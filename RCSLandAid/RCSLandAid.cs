@@ -12,8 +12,6 @@ namespace RCSLandAid
     [KSPAddon(KSPAddon.Startup.Flight, false)]
     public class RCSLandingAid : MonoBehaviour
     {
-
-
         bool selectingTarget = false;
         private IButton RCSla1Btn;
         private bool buttonCreated = false;
@@ -342,20 +340,20 @@ namespace RCSLandAid
 
         public void Update()
         {
-            string errLine = "1";
+            //string errLine = "1";
             try
             {
                 //Debug.Log("vsl nulla");
                 if (!DataModulePresent(FlightGlobals.ActiveVessel) && curVsl != null)
                 {
-                    errLine = "1a";
+                    //errLine = "1a";
                     //Debug.Log("vsl null");
                     curVsl.theLine.SetColors(Color.blue, Color.blue);
                     curVsl = null;
                     curBtnState = 0;
                 }
                 //Debug.Log("vsl nullb");
-                errLine = "1b";
+                //errLine = "1b";
                 if (curVsl == null && DataModulePresent(FlightGlobals.ActiveVessel) || curVsl != null && curVsl.vessel.rootPart != FlightGlobals.ActiveVessel.rootPart || curVsl != null && !curVsl.isMasterModule || curVsl != null && !FlightGlobals.ActiveVessel.parts.Contains(curVsl.part))
                 {
                     //Debug.Log("vsl switch");
@@ -371,7 +369,7 @@ namespace RCSLandAid
                     {
                         //Debug.Log("vsl nullb catch");
                     }
-                    errLine = "3";
+                    //errLine = "3";
                     //bool mdlFound = false;
                     //foreach (Part p in FlightGlobals.ActiveVessel.parts)
                     //{
@@ -379,29 +377,29 @@ namespace RCSLandAid
                     List<RCSLandingAidModule> dataModules = new List<RCSLandingAidModule>();
                     foreach (Part p in FlightGlobals.ActiveVessel.parts)
                     {
-                        errLine = "4";
+                        //errLine = "4";
                         //foreach (TWR1Data td in p.Modules.OfType<TWR1Data>())
                         //{
                         dataModules.AddRange(p.Modules.OfType<RCSLandingAidModule>());
                         //}
                     }
-                    errLine = "4a";
+                    //errLine = "4a";
                     if (dataModules.Count == 0)
                     {
-                        errLine = "4b";
+                        //errLine = "4b";
                         curVsl = null;
                     }
                     else if (dataModules.Where(pm => pm.isMasterModule == true).Count() > 0)
                     {
-                        errLine = "4c";
+                        //errLine = "4c";
                         curVsl = dataModules.Where(pm => pm.isMasterModule == true).First();
                     }
                     else
                     {
-                        errLine = "4d";
+                        //errLine = "4d";
                         curVsl = dataModules.First();
                     }
-                    errLine = "4e";
+                    //errLine = "4e";
                     foreach (RCSLandingAidModule tdata in dataModules)
                     {
                         if (tdata == curVsl) //make sure our master is set
@@ -437,22 +435,22 @@ namespace RCSLandAid
                     //}
                     //if (p.Modules.Contains("TWR1Data"))
                     //{
-                    //    errLine = "5";
+                    //    //errLine = "5";
 
                     //}
                     //errLine = "6";
                     //goto partFound;
                 }
                 //Debug.Log("vsl nulld");
-                errLine = "7";
+                //errLine = "7";
                 //curVsl = null;
-                errLine = "8";
+                //errLine = "8";
                 //curBtnState = 0;
                 //   }
             }
             catch
             {
-                print("LandAid hit Update catch" + errLine); 
+                //print("LandAid hit Update catch" + errLine); 
                 curBtnState = 0;
                 if (curVsl != null)
                 {
@@ -460,7 +458,7 @@ namespace RCSLandAid
                 }
                 curVsl = null;
             }
-            errLine = "9";
+            //errLine = "9";
            // Debug.Log("LA " + Krakensbane.GetFrameVelocity().ToString() + "|" + Krakensbane.GetFrameVelocity().magnitude);
             try
             {
@@ -500,7 +498,7 @@ namespace RCSLandAid
                         }
                     }
                 }
-                errLine = "10";
+                //errLine = "10";
                 //Debug.Log("LA " +curBtnState);
                 if (lastBtnState != curBtnState)
                 {
